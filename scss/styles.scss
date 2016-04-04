@@ -1,0 +1,31 @@
+// PARTIALS
+@import 'partials/reset';
+
+// VARIABLES
+
+// MIXINSx
+$breakpoints: (
+  'medium': 600px,
+  'large':  800px
+) !default;
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media only screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+/* STYLES */
+
+#container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 10px;
+}
+
